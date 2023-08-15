@@ -11,7 +11,7 @@ const Backdrop = () => {
       ref={shadows}
       temporal
       frames={60}
-      alphaTest={0.4}
+      alphaTest={0.2}
       scale={10}
       rotation={[Math.PI / 2, 0, 0]}
     >

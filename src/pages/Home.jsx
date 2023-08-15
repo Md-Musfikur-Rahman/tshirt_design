@@ -15,7 +15,10 @@ const Home = () => {
   return (
     <AnimatePresence>
       {snap.intro && (
-        <motion.section className="home" {...slideAnimation("left")}>
+        <motion.section
+          className="home min-h-screen"
+          {...slideAnimation("left")}
+        >
           <motion.header {...slideAnimation("down")}>
             <img
               src="./threejs.png"
@@ -33,26 +36,83 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              className="flex flex-col gap-5"
+              className="flex flex-col gap-10"
               {...headContentAnimation}
             >
-              <p className="max-w-md font-normal text-gray-600 text-base">
-                Create your unique and exclusive shirt with our brand-new 3D
-                customization tool. <strong>Unleash your imagination</strong>{" "}
-                and define your own style
-              </p>
+              <motion.div className="flex flex-col gap-5">
+                <p className="max-w-md font-normal text-gray-600 text-base">
+                  Create your unique and exclusive shirt with our brand-new 3D
+                  customization tool. <strong>Unleash your imagination</strong>{" "}
+                  and define your own style
+                </p>
 
-              <CustomButton
-                type="filled"
-                title="Customize It"
-                handleClick={() => (state.intro = false)}
-                customStyles="w-fit px-4 py-2.5 font-bold text-sm"
-              />
+                <CustomButton
+                  type="filled"
+                  title="Customize It"
+                  handleClick={() => (state.intro = false)}
+                  customStyles="w-fit px-4 py-2.5 font-bold text-sm"
+                />
+              </motion.div>
+              <motion.div className=" flex flex-col justify-center items-center gap-2">
+                <p className="max-w-md font-normal text-gray-600 text-base">
+                  Made by{" "}
+                  <a
+                    className="font-bold "
+                    href="https://github.com/Md-Musfikur-Rahman"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    MMR
+                  </a>{" "}
+                  with
+                </p>
+
+                <motion.div
+                  {...headTextAnimation}
+                  className=" flex flex-row gap-1 justify-center items-center"
+                >
+                  <a
+                    href="https://legacy.reactjs.org/docs/getting-started.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+                      alt="react"
+                      width={25}
+                      height={25}
+                    />
+                  </a>
+                  <a
+                    href="https://tailwindcss.com/docs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg"
+                      alt="tailwind css"
+                      width={25}
+                      height={25}
+                    />
+                  </a>
+                  <a
+                    href="https://threejs.org/docs/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Three.js_Icon.svg"
+                      alt="threejs "
+                      width={25}
+                      height={25}
+                    />
+                  </a>
+                </motion.div>
+              </motion.div>
             </motion.div>
           </motion.div>
         </motion.section>
       )}
-      Home
     </AnimatePresence>
   );
 };

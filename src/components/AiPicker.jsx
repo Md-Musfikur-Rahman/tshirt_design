@@ -1,6 +1,6 @@
 import React from "react";
-
 import CustomButton from "./CustomButton";
+import HashLoader from "react-spinners/HashLoader";
 
 const AiPicker = ({ prompt, setPrompt, generatingImg, handleSubmit }) => {
   return (
@@ -12,13 +12,16 @@ const AiPicker = ({ prompt, setPrompt, generatingImg, handleSubmit }) => {
         className="aipicker-textarea"
         placeholder="Give a details instraction for design or logo"
       ></textarea>
-      <div className="flex flex-wrap gap-3 ">
+      <div className="flex flex-wrap gap-3">
         {generatingImg ? (
-          <CustomButton
-            title="Generating"
-            type="outline"
-            customStyles="text-xs"
-          />
+          <>
+            <CustomButton
+              title="Generating"
+              type="outline"
+              customStyles="text-xs"
+            />
+            <HashLoader color="#36d7b7" speedMultiplier={0.5} />{" "}
+          </>
         ) : (
           <>
             <CustomButton

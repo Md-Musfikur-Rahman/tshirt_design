@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
-import config from "../config/config";
 import state from "../store";
 import { download } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
@@ -21,7 +20,6 @@ const Customizer = () => {
   const [file, setFile] = useState("");
   const [prompt, setPrompt] = useState("");
   const [generatingImg, setGeneratingImg] = useState(false);
-
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
     logoShort: true,
@@ -68,13 +66,9 @@ const Customizer = () => {
 
       const response = await fetch(url, options);
       const responseData = await response.json();
-
-      console.log("API Response Data:", responseData);
-
       const imgURL = responseData.url;
-      console.log("Image URL:", imgURL);
 
-      await delay(4500);
+      await delay(12500);
 
       handleDecals(type, imgURL);
     } catch (error) {
@@ -174,6 +168,13 @@ const Customizer = () => {
                 handleClick={() => handleActiveFilterTab(tab.name)}
               />
             ))}
+            <button className="download-btn" onClick={downloadCanvasToImage}>
+              <img
+                src={download}
+                alt="download_image"
+                className="w-3/5 h-3/5 object-contain"
+              />
+            </button>
           </motion.div>
         </>
       )}
