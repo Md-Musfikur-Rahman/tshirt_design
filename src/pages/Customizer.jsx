@@ -74,7 +74,7 @@ const Customizer = () => {
       const imgURL = responseData.url;
       console.log("Image URL:", imgURL);
 
-      await delay(15000);
+      await delay(4500);
 
       handleDecals(type, imgURL);
     } catch (error) {
