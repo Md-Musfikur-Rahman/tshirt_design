@@ -14,6 +14,7 @@ import {
   Tab,
   ColorPicker,
 } from "../components";
+
 const Customizer = () => {
   const snap = useSnapshot(state);
 
@@ -53,16 +54,29 @@ const Customizer = () => {
     try {
       setGeneratingImg(true);
 
-      const response = await fetch("http://localhost:6969/api/v1/dalle", {
+      const url = "https://open-ai21.p.rapidapi.com/texttoimage2";
+      const options = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt }),
-      });
-      console.log("API Response Status:", response.status);
-      const data = await response.json();
-      const img = `data:image/png;base64,${data.photo}`;
-      console.log(img);
-      handleDecals(type, img);
+        headers: {
+          "content-type": "application/x-www-form-urlencoded",
+          "X-RapidAPI-Key":
+            "9d0c725b91mshc3f3efb9769679cp19d079jsnd85d0f565880",
+          "X-RapidAPI-Host": "open-ai21.p.rapidapi.com",
+        },
+        body: new URLSearchParams({ text: prompt }),
+      };
+
+      const response = await fetch(url, options);
+      const responseData = await response.json();
+
+      console.log("API Response Data:", responseData);
+
+      const imgURL = responseData.url;
+      console.log("Image URL:", imgURL);
+
+      await delay(15000);
+
+      handleDecals(type, imgURL);
     } catch (error) {
       alert(error);
     } finally {
@@ -70,6 +84,8 @@ const Customizer = () => {
       setActiveEditorTab("");
     }
   };
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];
