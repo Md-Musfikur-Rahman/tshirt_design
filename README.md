@@ -59,4 +59,4 @@ We welcome contributions, bug reports, and feature requests through pull request
 
 ## Screenshots
 
-![T-Shirt Design Studio]()
+![T-Shirt Design Studio](SCR-20231024-kieo.png)
